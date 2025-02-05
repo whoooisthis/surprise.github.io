@@ -19,5 +19,42 @@
     <!-- <button class="button" onclick="location.href='date.html'">
       Click me UWU
     </button> -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const createSunflower = () => {
+          const sunflower = document.createElement('div');
+          sunflower.textContent = '🌻';
+          sunflower.style.position = 'absolute';
+          sunflower.style.top = '0';
+          sunflower.style.left = `${Math.random() * 100}vw`;
+          sunflower.style.animation = 'fall 5s linear infinite';
+          document.body.appendChild(sunflower);
+
+          setTimeout(() => {
+            sunflower.remove();
+          }, 5000);
+        };
+
+        const intervalId = setInterval(createSunflower, 300);
+
+        setTimeout(() => {
+          clearInterval(intervalId);
+        }, 5000);
+      });
+
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fall {
+          to {
+            transform: translateY(100vh);
+          }
+        }
+        div {
+          font-size: 2rem;
+          pointer-events: none;
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
   </body>
 </html>

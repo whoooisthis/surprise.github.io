@@ -10,6 +10,30 @@
         max-width: 100%;
         height: auto;
       }
+      .button {
+        display: block;
+        margin: 10px auto;
+        padding: 10px 20px;
+        background-color: gold;
+        color: black;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 5px;
+      }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      .fade-out {
+        animation: fadeOut 1s ease-in-out;
+      }
     </style>
   </head>
   <body>
@@ -22,10 +46,19 @@
       Your browser does not support the audio element.
     </audio>
     <h1>Stay Tuned For More 😉</h1>
+    <h2>Now is the time.</h2>
+    <button class="button" onclick="animateAndRedirect()">Day 1</button>
     <!-- <button class="button" onclick="location.href='date.html'">
       Click me UWU
     </button> -->
     <script>
+      function animateAndRedirect() {
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+          window.location.href = 'day1.html';
+        }, 1000);
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
         const createSunflower = () => {
           const sunflower = document.createElement('div');

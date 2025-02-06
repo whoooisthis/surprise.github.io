@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Rose Day</title>
+    <link rel="stylesheet" href="css/valentine.css" />
+    <style>
+      .responsive {
+        max-width: 100%;
+        height: auto;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(100vh);
+        }
+      }
+      .sunflower {
+        font-size: 2rem;
+        position: absolute;
+        top: 0;
+        pointer-events: none;
+        animation: fall 5s linear infinite;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .fade-in {
+        animation: fadeIn 2s ease-in-out;
+      }
+      #roseDayMessage, #question, h1 {
+        text-align: center;
+      }
+      button.answerButton {
+        display: block;
+        margin: 10px auto;
+      }
+      .note {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        animation: fadeIn 2s ease-in-out;
+      }
+      .strikeout {
+        text-decoration: line-through;
+      }
+      @keyframes pageFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .page-fade-in {
+        animation: pageFadeIn 1s ease-in-out;
+      }
+      .hidden {
+        display: none;
+      }
+      .extra-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body class="page-fade-in">
+    <div id="roseDayMessage" class="fade-in"><b>Happy <span class="strikeout">Rose</span> Sunflower Day</b></div>
+    <img src="sunflower.gif" alt="sunflower" class="responsive fade-in" />
+    <br />
+    <h1 class="fade-in">Enjoy the Day with Sunflowers 🌻</h1>
+    <div id="question" class="fade-in"><b>Did you get the pair of sunflowers?</b></div>
+    <button class="answerButton fade-in" onclick="showAnimation()">Yes 🌻</button>
+    <div id="extraContent" class="hidden">
+      <h2>Something interesting is here:</h2>
+      <div class="extra-buttons">
+        <button class="answerButton fade-in" onclick="window.location.href='day1video.html'">Play Video</button>
+        <button class="answerButton fade-in" onclick="window.location.href='day1game.html'">Play Game</button>
+      </div>
+    </div>
+
+    <video id="flowergirlVideo" class="responsive" controls style="display:none;">
+      <source src="flowergirl.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <script>
+      function createSunflower() {
+        const sunflower = document.createElement('div');
+        sunflower.textContent = '🌻';
+        sunflower.classList.add('sunflower');
+        sunflower.style.left = `${Math.random() * 100}vw`;
+        document.body.appendChild(sunflower);
+
+        setTimeout(() => {
+          sunflower.remove();
+        }, 5000);
+      }
+
+      function showAnimation() {
+        const note = document.createElement('div');
+        note.textContent = 'Thank you for being my sunshine!';
+        note.classList.add('note');
+        document.body.appendChild(note);
+
+        setTimeout(() => {
+          note.remove();
+          document.getElementById('extraContent').classList.remove('hidden');
+        }, 5000);
+
+        const intervalId = setInterval(createSunflower, 300);
+
+        setTimeout(() => {
+          clearInterval(intervalId);
+        }, 5000);
+      }
+
+      function playVideo() {
+        const video = document.getElementById('flowergirlVideo');
+        video.style.display = 'block';
+        video.play();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sunflower Emoji Game</title>
+    <link rel="stylesheet" href="css/valentine.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f8ff;
+        flex-direction: column;
+      }
+      #gameCanvas {
+        border: 2px solid #000;
+      }
+      .button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: gold;
+        color: black;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 5px;
+      }
+      #score, #time {
+        font-size: 1.5rem;
+        margin: 10px;
+      }
+      #instructions {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border: 2px solid black;
+        border-radius: 10px;
+        text-align: center;
+        z-index: 1000;
+      }
+      #instructions p {
+        margin: 10px 0;
+      }
+      #closeInstructions {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: gold;
+        color: black;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="instructions">
+      <p>How to Play:</p>
+      <p>Use the left and right arrow keys on your keyboard to move the sunflower.</p>
+      <p>Avoid the bee to keep playing and increase your score.</p>
+      <p>Good luck!</p>
+      <button id="closeInstructions" onclick="closeInstructions()">Close</button>
+    </div>
+    <div id="score">Score: 0</div>
+    <div id="time">Time: 0s</div>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <button class="button" onclick="showInstructions()">Start Game</button>
+    <script>
+      const canvas = document.getElementById('gameCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const sunflower = '🌻';
+      const bee = '🐝';
+
+      let sunflowerX = canvas.width / 2;
+      let sunflowerY = canvas.height - 60;
+      let sunflowerSpeed = 10;
+
+      let beeX = Math.random() * (canvas.width - 30);
+      let beeY = 0;
+      let beeSpeed = 7;
+
+      let score = 0;
+      let time = 0;
+      let gameInterval;
+      let timeInterval;
+
+      document.addEventListener('keydown', moveSunflower);
+
+      function moveSunflower(e) {
+        if (e.key === 'ArrowLeft' && sunflowerX > 0) {
+          sunflowerX -= sunflowerSpeed;
+        } else if (e.key === 'ArrowRight' && sunflowerX < canvas.width - 30) {
+          sunflowerX += sunflowerSpeed;
+        }
+      }
+
+      function drawSunflower() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.font = '30px Arial';
+        ctx.fillText(sunflower, sunflowerX, sunflowerY);
+        ctx.fillText(bee, beeX, beeY);
+
+        beeY += beeSpeed;
+
+        if (beeY > canvas.height) {
+          beeY = 0;
+          beeX = Math.random() * (canvas.width - 30);
+          score++;
+          document.getElementById('score').textContent = 'Score: ' + score;
+        }
+
+        if (
+          beeX < sunflowerX + 30 &&
+          beeX + 30 > sunflowerX &&
+          beeY < sunflowerY + 30 &&
+          beeY + 30 > sunflowerY
+        ) {
+          alert('Game Over! Your score: ' + score);
+          clearInterval(gameInterval);
+          clearInterval(timeInterval);
+        }
+      }
+
+      function startGame() {
+        score = 0;
+        time = 0;
+        beeY = 0;
+        beeX = Math.random() * (canvas.width - 30);
+        document.getElementById('score').textContent = 'Score: ' + score;
+        document.getElementById('time').textContent = 'Time: ' + time + 's';
+        gameInterval = setInterval(drawSunflower, 50);
+        timeInterval = setInterval(() => {
+          time++;
+          document.getElementById('time').textContent = 'Time: ' + time + 's';
+        }, 1000);
+      }
+
+      function showInstructions() {
+        document.getElementById('instructions').style.display = 'block';
+      }
+
+      function closeInstructions() {
+        document.getElementById('instructions').style.display = 'none';
+        startGame();
+      }
+    </script>
+  </body>
+</html>

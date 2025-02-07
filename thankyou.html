@@ -11,8 +11,8 @@
         height: auto;
       }
       .button {
-        display: block;
-        margin: 10px auto;
+        display: inline-block;
+        margin: 10px;
         padding: 10px 20px;
         background-color: gold;
         color: black;
@@ -22,6 +22,18 @@
         text-decoration: none;
         font-size: 1rem;
         border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      .button.day1 {
+        background-color: lightgoldenrodyellow;
+      }
+      .button.day2 {
+        background-color: gold;
+        font-weight: bold;
+      }
+      .button.disabled {
+        background-color: lightgray;
+        cursor: not-allowed;
       }
       @keyframes fadeOut {
         from {
@@ -47,53 +59,15 @@
     </audio>
     <h1>Stay Tuned For More 😉</h1>
     <h2>Now is the time.</h2>
-    <button class="button" onclick="animateAndRedirect()">Day 1</button>
-    <!-- <button class="button" onclick="location.href='date.html'">
-      Click me UWU
-    </button> -->
-    <script>
-      function animateAndRedirect() {
-        document.body.classList.add('fade-out');
-        setTimeout(() => {
-          window.location.href = 'day1.html';
-        }, 1000);
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const createSunflower = () => {
-          const sunflower = document.createElement('div');
-          sunflower.textContent = '🌻';
-          sunflower.style.position = 'absolute';
-          sunflower.style.top = '0';
-          sunflower.style.left = `${Math.random() * 100}vw`;
-          sunflower.style.animation = 'fall 5s linear infinite';
-          document.body.appendChild(sunflower);
-
-          setTimeout(() => {
-            sunflower.remove();
-          }, 5000);
-        };
-
-        const intervalId = setInterval(createSunflower, 300);
-
-        setTimeout(() => {
-          clearInterval(intervalId);
-        }, 5000);
-      });
-
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes fall {
-          to {
-            transform: translateY(100vh);
-          }
-        }
-        div {
-          font-size: 2rem;
-          pointer-events: none;
-        }
-      `;
-      document.head.appendChild(style);
-    </script>
+    <div>
+      <button class="button day1" onclick="window.location.href='day1.html'">Day 1</button>
+      <button class="button day2" onclick="window.location.href='day2.html'">Day 2</button>
+      <button class="button disabled" disabled>Day 3</button>
+      <button class="button disabled" disabled>Day 4</button>
+      <button class="button disabled" disabled>Day 5</button>
+      <button class="button disabled" disabled>Day 6</button>
+      <button class="button disabled" disabled>Day 7</button>
+      <button class="button disabled" disabled>Day 8</button>
+    </div>
   </body>
 </html>

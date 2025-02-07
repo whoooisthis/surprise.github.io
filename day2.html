@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Propose Day</title>
+    <link rel="stylesheet" href="css/valentine.css" />
+    <style>
+      .responsive {
+        max-width: 100%;
+        height: auto;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(100vh);
+        }
+      }
+      .sunflower {
+        font-size: 2rem;
+        position: absolute;
+        top: 0;
+        pointer-events: none;
+        animation: fall 5s linear infinite;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .fade-in {
+        animation: fadeIn 2s ease-in-out;
+      }
+      #proposeDayMessage, #question, h1 {
+        text-align: center;
+      }
+      .answerButton {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 20px;
+        background-color: gold;
+        color: black;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 5px;
+      }
+      .note {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        animation: fadeIn 2s ease-in-out;
+      }
+      .strikeout {
+        text-decoration: line-through;
+      }
+      @keyframes pageFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .page-fade-in {
+        animation: pageFadeIn 1s ease-in-out;
+      }
+      .content {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body class="page-fade-in">
+    <div id="proposeDayMessage" class="fade-in">
+      <b>Happy Propose Day</b>
+    </div>
+    <img src="day2.gif" alt="sunflower" class="responsive fade-in" />
+    <br />
+    <div class="content fade-in">
+      <h1>My Love, My Forever Travel Partner, ✨❤️</h1>
+      <p>
+        From the day our paths crossed, bound by our love for travel, every journey has felt more magical with you in my life. Though miles may separate us, our hearts have always found their way to each other, just like travelers destined to meet at the same destination. 🌍💫
+      </p>
+      <p>
+        Every moment we spend together is like discovering a beautiful new place—filled with wonder, excitement, and warmth. And now, I don’t just want to be your travel partner; I want to be your forever partner. 💍❤️
+      </p>
+      <p>
+        So today, on Propose Day, I ask you—Will you be my forever adventure? Will you walk beside me through every sunrise and sunset, every city and countryside, every laughter and tear? No matter how far we are, my heart will always belong to you.
+      </p>
+      <div>
+        <button class="answerButton fade-in" onclick="window.location.href='day2/day2.html'">Yes 🌻</button>
+        <button class="answerButton fade-in" onclick="window.location.href='day2/day2.html'">Definitely Yes 🌻</button>
+      </div>
+    </div>
+
+    <script>
+      function createSunflower() {
+        const sunflower = document.createElement('div');
+        sunflower.textContent = '🌻';
+        sunflower.classList.add('sunflower');
+        sunflower.style.left = `${Math.random() * 100}vw`;
+        document.body.appendChild(sunflower);
+
+        setTimeout(() => {
+          sunflower.remove();
+        }, 5000);
+      }
+
+      function showAnimation() {
+        const note = document.createElement('div');
+        note.textContent = 'Thank you for being my sunshine!';
+        note.classList.add('note');
+        document.body.appendChild(note);
+
+        setTimeout(() => {
+          note.remove();
+        }, 5000);
+
+        const intervalId = setInterval(createSunflower, 300);
+
+        setTimeout(() => {
+          clearInterval(intervalId);
+        }, 5000);
+      }
+    </script>
+  </body>
+</html>

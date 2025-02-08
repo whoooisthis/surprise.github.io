@@ -90,7 +90,7 @@
     <div id="introText4" class="center-text">
       <span class="brown">Smoor</span> is another favorite!<br>
       <span id="line4" style="display: none;">You have a soft spot for the finest chocolates, and Smoor is one of your absolute favorites.</span><br>
-      <span id="line5" style="display: none;">From their silky smooth texture to the rich flavors, every bite makes you happy, and that makes me happy too. 🍫💖</span><br>
+      <span id="line5" style="display: none;">From their silky smooth texture to the rich flavors, every bite makes you happy.</span><br>
       <span id="line6" style="display: none;">Maybe I should just get you a lifetime supply? 😜</span>
     </div>
     <div id="introText5" class="center-text">
@@ -107,6 +107,7 @@
     </div>
     <div id="introText7" class="center-text">
       <span id="line13" style="display: none;">Your chocolates are coming... 🍫 Get ready for a sweet surprise! ✨</span>
+      <img id="courierGif" src="courier.gif" alt="Courier" class="responsive" style="display: none;" />
     </div>
 
     <script>
@@ -160,6 +161,7 @@
         const line11 = document.getElementById('line11');
         const line12 = document.getElementById('line12');
         const line13 = document.getElementById('line13');
+        const courierGif = document.getElementById('courierGif');
         const content = document.querySelector('.content');
 
         introText1.style.opacity = 1;
@@ -220,7 +222,10 @@
                                                         setTimeout(() => {
                                                           line13.style.display = 'inline';
                                                           setTimeout(() => {
-                                                            content.style.display = 'block';
+                                                            courierGif.style.display = 'block';
+                                                            setTimeout(() => {
+                                                              content.style.display = 'block';
+                                                            }, 2000);
                                                           }, 2000);
                                                         }, 2000);
                                                       }, 2000);

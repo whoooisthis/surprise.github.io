@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Chocolate Day</title>
+    <link rel="stylesheet" href="css/valentine.css" />
+    <style>
+      body {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        flex-direction: column;
+        color: black;
+      }
+      .responsive {
+        max-width: 100%;
+        height: auto;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(100vh);
+        }
+      }
+      .chocolate {
+        font-size: 2rem;
+        position: absolute;
+        top: 0;
+        pointer-events: none;
+        animation: fall 5s linear infinite;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .fade-in {
+        animation: fadeIn 2s ease-in-out;
+      }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      .fade-out {
+        animation: fadeOut 2s ease-in-out;
+      }
+      .center-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 1.5rem;
+        opacity: 0;
+      }
+      .content {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        display: none;
+      }
+      .brown {
+        color: brown;
+      }
+      .bold {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="introText1" class="center-text fade-in">Happy <span class="brown">Chocolate</span> Day</div>
+    <div id="introText2" class="center-text">Let's see what she likes in <span class="brown">chocolates</span>...</div>
+    <div id="introText3" class="center-text">
+      <span class="brown">KinderJoy</span> is her favorite!<br>
+      <span id="line1" style="display: none;">No matter how many I give, they vanish in minutes! 🍫✨</span><br>
+      <span id="line2" style="display: none;">And the joy on your face while unwrapping them is just priceless.</span><br>
+      <span id="line3" style="display: none;">The Harry Potter edition was a craze, but lucky me—I got you a few, and you absolutely loved them! 🪄💙</span>
+    </div>
+    <div id="introText4" class="center-text">
+      <span class="brown">Smoor</span> is another favorite!<br>
+      <span id="line4" style="display: none;">You have a soft spot for the finest chocolates, and Smoor is one of your absolute favorites.</span><br>
+      <span id="line5" style="display: none;">From their silky smooth texture to the rich flavors, every bite makes you happy, and that makes me happy too. 🍫💖</span><br>
+      <span id="line6" style="display: none;">Maybe I should just get you a lifetime supply? 😜</span>
+    </div>
+    <div id="introText5" class="center-text">
+      <span class="brown">KitKat</span> is a must-have!<br>
+      <span id="line7" style="display: none;">The wafer magic you can never resist! Whether it's a quick snack when you're hungry or just a craving,</span><br>
+      <span id="line8" style="display: none;">a KitKat break is always a must for you.</span><br>
+      <span id="line9" style="display: none;">And of course, sharing it with me? Well… that's optional, right? 😆❤️</span>
+    </div>
+    <div id="introText6" class="center-text">
+      <span class="brown">Dairy Milk</span> is your classic comfort!<br>
+      <span id="line10" style="display: none;">Your classic comfort chocolate. Sometimes, when a craving hits, nothing else will do!</span><br>
+      <span id="line11" style="display: none;">And if you don’t get one, I can see the little pout forming.</span><br>
+      <span id="line12" style="display: none;">But don’t worry, love—I’ll always have one ready just for you! 🍫😊</span>
+    </div>
+    <div id="introText7" class="center-text">
+      <span id="line13" style="display: none;">Your chocolates are coming... 🍫 Get ready for a sweet surprise! ✨</span>
+    </div>
+
+    <script>
+      function createChocolate() {
+        const chocolate = document.createElement('div');
+        chocolate.textContent = '🍫';
+        chocolate.classList.add('chocolate');
+        chocolate.style.left = `${Math.random() * 100}vw`;
+        document.body.appendChild(chocolate);
+
+        setTimeout(() => {
+          chocolate.remove();
+        }, 5000);
+      }
+
+      function showAnimation() {
+        const note = document.createElement('div');
+        note.textContent = 'Thank you for being my sweetness!';
+        note.classList.add('note');
+        document.body.appendChild(note);
+
+        setTimeout(() => {
+          note.remove();
+        }, 5000);
+
+        const intervalId = setInterval(createChocolate, 300);
+
+        setTimeout(() => {
+          clearInterval(intervalId);
+        }, 5000);
+      }
+
+      window.addEventListener('load', () => {
+        const introText1 = document.getElementById('introText1');
+        const introText2 = document.getElementById('introText2');
+        const introText3 = document.getElementById('introText3');
+        const introText4 = document.getElementById('introText4');
+        const introText5 = document.getElementById('introText5');
+        const introText6 = document.getElementById('introText6');
+        const introText7 = document.getElementById('introText7');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
+        const line4 = document.getElementById('line4');
+        const line5 = document.getElementById('line5');
+        const line6 = document.getElementById('line6');
+        const line7 = document.getElementById('line7');
+        const line8 = document.getElementById('line8');
+        const line9 = document.getElementById('line9');
+        const line10 = document.getElementById('line10');
+        const line11 = document.getElementById('line11');
+        const line12 = document.getElementById('line12');
+        const line13 = document.getElementById('line13');
+        const content = document.querySelector('.content');
+
+        introText1.style.opacity = 1;
+        setTimeout(() => {
+          introText1.classList.add('fade-out');
+          setTimeout(() => {
+            introText1.style.display = 'none';
+            introText2.style.opacity = 1;
+            setTimeout(() => {
+              introText2.classList.add('fade-out');
+              setTimeout(() => {
+                introText2.style.display = 'none';
+                introText3.style.opacity = 1;
+                setTimeout(() => {
+                  line1.style.display = 'inline';
+                  setTimeout(() => {
+                    line2.style.display = 'inline';
+                    setTimeout(() => {
+                      line3.style.display = 'inline';
+                      setTimeout(() => {
+                        introText3.classList.add('fade-out');
+                        setTimeout(() => {
+                          introText3.style.display = 'none';
+                          introText4.style.opacity = 1;
+                          setTimeout(() => {
+                            line4.style.display = 'inline';
+                            setTimeout(() => {
+                              line5.style.display = 'inline';
+                              setTimeout(() => {
+                                line6.style.display = 'inline';
+                                setTimeout(() => {
+                                  introText4.classList.add('fade-out');
+                                  setTimeout(() => {
+                                    introText4.style.display = 'none';
+                                    introText5.style.opacity = 1;
+                                    setTimeout(() => {
+                                      line7.style.display = 'inline';
+                                      setTimeout(() => {
+                                        line8.style.display = 'inline';
+                                        setTimeout(() => {
+                                          line9.style.display = 'inline';
+                                          setTimeout(() => {
+                                            introText5.classList.add('fade-out');
+                                            setTimeout(() => {
+                                              introText5.style.display = 'none';
+                                              introText6.style.opacity = 1;
+                                              setTimeout(() => {
+                                                line10.style.display = 'inline';
+                                                setTimeout(() => {
+                                                  line11.style.display = 'inline';
+                                                  setTimeout(() => {
+                                                    line12.style.display = 'inline';
+                                                    setTimeout(() => {
+                                                      introText6.classList.add('fade-out');
+                                                      setTimeout(() => {
+                                                        introText6.style.display = 'none';
+                                                        introText7.style.opacity = 1;
+                                                        setTimeout(() => {
+                                                          line13.style.display = 'inline';
+                                                          setTimeout(() => {
+                                                            content.style.display = 'block';
+                                                          }, 2000);
+                                                        }, 2000);
+                                                      }, 2000);
+                                                    }, 2000);
+                                                  }, 2000);
+                                                }, 2000);
+                                              }, 2000);
+                                            }, 2000);
+                                          }, 2000);
+                                        }, 2000);
+                                      }, 2000);
+                                    }, 2000);
+                                  }, 2000);
+                                }, 2000);
+                              }, 2000);
+                            }, 2000);
+                          }, 2000);
+                        }, 2000);
+                      }, 2000);
+                    }, 2000);
+                  }, 2000);
+                }, 2000);
+              }, 2000);
+            }, 2000);
+          }, 2000);
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

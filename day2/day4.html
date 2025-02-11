@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.3/lottie_svg.min.js"></script>
+    <title>ProposeDay</title>
+    <!-- <link rel="icon" href="icons/tab-icon.png"/> -->
+    <link rel="stylesheet" href="./style.css">
+    <style>
+      .music-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .player {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .track-nav {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+      .track-info {
+        text-align: center;
+      }
+      @media (min-width: 768px) {
+        .music-container {
+          flex-direction: row;
+        }
+        .player {
+          flex-direction: row;
+        }
+        .track-nav {
+          justify-content: space-between;
+        }
+        .track-info {
+          text-align: left;
+        }
+      }
+      body {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        flex-direction: column;
+        color: black;
+      }
+      .responsive {
+        max-width: 100%;
+        height: auto;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      .fade-in {
+        animation: fadeIn 2s ease-in-out;
+      }
+      .fade-out {
+        animation: fadeOut 2s ease-in-out;
+      }
+      .center-left {
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+      }
+      .center-right {
+        position: absolute;
+        top: 50%;
+        right: 25%;
+        transform: translate(50%, -50%);
+        opacity: 0;
+      }
+      .center-bottom {
+        position: absolute;
+        bottom: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+        font-size: 2rem;
+        opacity: 0;
+      }
+      .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+      }
+      .bottom-center {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+        font-size: 2rem;
+        opacity: 0;
+      }
+      .top-center {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+        font-size: 2rem;
+        opacity: 0;
+      }
+      .paragraph {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+        font-size: 1.5rem;
+        opacity: 0;
+      }
+    </style>
+</head>
+<body style="font-family: 'Comic Neue';" class="relative">
+
+    <!-- MUSIC PLAYER -->
+    <div class="fixed left-6 bottom-6 z-10">
+        <div class="music-container relative bg-neutral-100 py-3 px-3 border-2 z-10 rounded-md border-black flex items-center">
+            <div class="toggle-player bg-neutral-100 border-2 border-black">
+                <img class="w-full" src="icons/close.svg" alt="">
+            </div>
+            <div class="avatar absolute w-14">
+                <img class="w-full border-2 bg-white border-black rounded-md" src="icons/pinkheart.svg" alt="">
+            </div>
+            <div class="player">
+                <div class="sound-bars-lottie">
+                    <div class="sound-bars"></div>
+                </div>
+                <div class="track-info -space-y-1">
+                    <div class="trackname">Only</div>
+                    <div class="trackartist">Track Artist</div>
+                </div>
+                <div class="track-nav">
+                    <div class="prev-track">
+                        <img class="w-7" src="icons/backplayer.svg" alt="">
+                    </div>
+                    <div class="playpause-track">
+                        <img class="w-8" src="icons/play.svg" alt="">
+                    </div>
+                    <div class="next-track">
+                        <img class="w-7" style="transform: rotate(180deg);" src="icons/backplayer.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="text-center mt-1" id="musicMessage">
+            <p>Play the special music and wait for the full music. Revealing Soon....</p>
+        </div> -->
+    </div>
+    <img id="jumpGif" src="../day4/jump.gif" alt="Jumping" class="responsive center-left" />
+    <img id="exerciseGif" src="../day4/exercise.gif" alt="Exercising" class="responsive center-right" />
+    <div id="healthText" class="center-bottom">The more health-conscious she is</div>
+    <img id="foodyGif" src="../day4/foody.gif" alt="Foody" class="responsive center" />
+    <div id="foodyText" class="bottom-center">The more foody I become!</div>
+    <img id="sendingGif" src="../day4/sending.gif" alt="Sending" class="responsive center" style="display: none;" />
+    <div id="sendingText" class="bottom-center" style="display: none;">The more love I give</div>
+    <img id="lovegetGif" src="../day4/loveget.gif" alt="Love Get" class="responsive center" style="display: none;" />
+    <div id="lovegetText" class="bottom-center" style="display: none;">the more comfortable she gets!</div>
+    <img id="lovesendingGif" src="../day4/lovesending.gif" alt="Love Sending" class="responsive center" style="display: none;" />
+    <div id="lovesendingText" class="bottom-center" style="display: none;">The more hearts I give</div>
+    <img id="loveeatGif" src="../day4/loveeat.gif" alt="Love Eat" class="responsive center" style="display: none;" />
+    <div id="loveeatText" class="bottom-center" style="display: none;">the prettier she gets!</div>
+    <img id="missingGif" src="../day4/missing.gif" alt="Missing" class="responsive center" style="display: none;" />
+    <div id="missingText" class="bottom-center" style="display: none;">The moment I miss her</div>
+    <img id="teddy1Gif" src="../day4/teddy1.gif" alt="Teddy" class="responsive center" style="display: none;" />
+    <div id="teddy1Text" class="bottom-center" style="display: none;">destiny makes us meet</div>
+    <img id="happyGif" src="../day4/happy.gif" alt="Happy" class="responsive center" style="display: none;" />
+    <div id="happyText" class="bottom-center" style="display: none;">and the happier I get!</div>
+    <div id="headline" class="top-center" style="display: none;">Happy Teddy Day</div>
+    <div id="paragraph" class="paragraph" style="display: none;">Just like a teddy bear, you're my warm hug on a cold day, my comfort when I need it the most, and my cutest source of happiness. The more love I give, the more beautiful you shine, and the moment I miss you, destiny finds a way to bring us closer. With every heartbeat, you become even more precious to me, just like a teddy that holds a lifetime of love in its soft embrace. I still remember how we clicked that beautiful penguin hug photo together, looking just like real penguins acting as a couple of teddy bears. 🐧🧸 That moment was pure magic—our love wrapped in the cutest embrace, just like teddies meant to be together forever!</div>
+    <img id="penguinGif" src="../day4/penguin.png" alt="Penguin" class="responsive center" style="display: none;" />
+
+    <script>
+      window.addEventListener('load', () => {
+        const jumpGif = document.getElementById('jumpGif');
+        const exerciseGif = document.getElementById('exerciseGif');
+        const healthText = document.getElementById('healthText');
+        const foodyGif = document.getElementById('foodyGif');
+        const foodyText = document.getElementById('foodyText');
+        const sendingGif = document.getElementById('sendingGif');
+        const sendingText = document.getElementById('sendingText');
+        const lovegetGif = document.getElementById('lovegetGif');
+        const lovegetText = document.getElementById('lovegetText');
+        const lovesendingGif = document.getElementById('lovesendingGif');
+        const lovesendingText = document.getElementById('lovesendingText');
+        const loveeatGif = document.getElementById('loveeatGif');
+        const loveeatText = document.getElementById('loveeatText');
+        const missingGif = document.getElementById('missingGif');
+        const missingText = document.getElementById('missingText');
+        const teddy1Gif = document.getElementById('teddy1Gif');
+        const teddy1Text = document.getElementById('teddy1Text');
+        const happyGif = document.getElementById('happyGif');
+        const happyText = document.getElementById('happyText');
+        const headline = document.getElementById('headline');
+        const paragraph = document.getElementById('paragraph');
+        const penguinGif = document.getElementById('penguinGif');
+
+        jumpGif.style.opacity = 1;
+        setTimeout(() => {
+          exerciseGif.style.opacity = 1;
+          setTimeout(() => {
+            healthText.style.opacity = 1;
+            setTimeout(() => {
+              jumpGif.classList.add('fade-out');
+              exerciseGif.classList.add('fade-out');
+              healthText.classList.add('fade-out');
+              setTimeout(() => {
+                jumpGif.style.display = 'none';
+                exerciseGif.style.display = 'none';
+                healthText.style.display = 'none';
+                foodyGif.style.opacity = 1;
+                setTimeout(() => {
+                  foodyText.style.opacity = 1;
+                  setTimeout(() => {
+                    foodyGif.classList.add('fade-out');
+                    foodyText.classList.add('fade-out');
+                    setTimeout(() => {
+                      foodyGif.style.display = 'none';
+                      foodyText.style.display = 'none';
+                      sendingGif.style.display = 'block';
+                      sendingGif.style.opacity = 1;
+                      setTimeout(() => {
+                        sendingText.style.display = 'block';
+                        sendingText.style.opacity = 1;
+                        setTimeout(() => {
+                          sendingGif.classList.add('fade-out');
+                          sendingText.classList.add('fade-out');
+                          setTimeout(() => {
+                            sendingGif.style.display = 'none';
+                            sendingText.style.display = 'none';
+                            lovegetGif.style.display = 'block';
+                            lovegetGif.style.opacity = 1;
+                            setTimeout(() => {
+                              lovegetText.style.display = 'block';
+                              lovegetText.style.opacity = 1;
+                              setTimeout(() => {
+                                lovegetGif.classList.add('fade-out');
+                                lovegetText.classList.add('fade-out');
+                                setTimeout(() => {
+                                  lovegetGif.style.display = 'none';
+                                  lovegetText.style.display = 'none';
+                                  lovesendingGif.style.display = 'block';
+                                  lovesendingGif.style.opacity = 1;
+                                  setTimeout(() => {
+                                    lovesendingText.style.display = 'block';
+                                    lovesendingText.style.opacity = 1;
+                                    setTimeout(() => {
+                                      lovesendingGif.classList.add('fade-out');
+                                      lovesendingText.classList.add('fade-out');
+                                      setTimeout(() => {
+                                        lovesendingGif.style.display = 'none';
+                                        lovesendingText.style.display = 'none';
+                                        loveeatGif.style.display = 'block';
+                                        loveeatGif.style.opacity = 1;
+                                        setTimeout(() => {
+                                          loveeatText.style.display = 'block';
+                                          loveeatText.style.opacity = 1;
+                                          setTimeout(() => {
+                                            loveeatGif.classList.add('fade-out');
+                                            loveeatText.classList.add('fade-out');
+                                            setTimeout(() => {
+                                              loveeatGif.style.display = 'none';
+                                              loveeatText.style.display = 'none';
+                                              missingGif.style.display = 'block';
+                                              missingGif.style.opacity = 1;
+                                              setTimeout(() => {
+                                                missingText.style.display = 'block';
+                                                missingText.style.opacity = 1;
+                                                setTimeout(() => {
+                                                  missingGif.classList.add('fade-out');
+                                                  missingText.classList.add('fade-out');
+                                                  setTimeout(() => {
+                                                    missingGif.style.display = 'none';
+                                                    missingText.style.display = 'none';
+                                                    teddy1Gif.style.display = 'block';
+                                                    teddy1Gif.style.opacity = 1;
+                                                    setTimeout(() => {
+                                                      teddy1Text.style.display = 'block';
+                                                      teddy1Text.style.opacity = 1;
+                                                      setTimeout(() => {
+                                                        teddy1Gif.classList.add('fade-out');
+                                                        teddy1Text.classList.add('fade-out');
+                                                        setTimeout(() => {
+                                                          teddy1Gif.style.display = 'none';
+                                                          teddy1Text.style.display = 'none';
+                                                          happyGif.style.display = 'block';
+                                                          happyGif.style.opacity = 1;
+                                                          setTimeout(() => {
+                                                            happyText.style.display = 'block';
+                                                            happyText.style.opacity = 1;
+                                                            setTimeout(() => {
+                                                              happyGif.classList.add('fade-out');
+                                                              happyText.classList.add('fade-out');
+                                                              setTimeout(() => {
+                                                                happyGif.style.display = 'none';
+                                                                happyText.style.display = 'none';
+                                                                headline.style.display = 'block';
+                                                                headline.style.opacity = 1;
+                                                                setTimeout(() => {
+                                                                  paragraph.style.display = 'block';
+                                                                  paragraph.style.opacity = 1;
+                                                                  setTimeout(() => {
+                                                                    penguinGif.style.display = 'block';
+                                                                    penguinGif.style.opacity = 1;
+                                                                  }, 2000);
+                                                                }, 2000);
+                                                              }, 2000);
+                                                            }, 2000);
+                                                          }, 2000);
+                                                        }, 2000);
+                                                      }, 2000);
+                                                    }, 2000);
+                                                  }, 2000);
+                                                }, 2000);
+                                              }, 2000);
+                                            }, 2000);
+                                          }, 2000);
+                                        }, 2000);
+                                      }, 2000);
+                                    }, 2000);
+                                  }, 2000);
+                                }, 2000);
+                              }, 2000);
+                            }, 2000);
+                          }, 2000);
+                        }, 2000);
+                      }, 2000);
+                    }, 2000);
+                  }, 2000);
+                }, 2000);
+              }, 2000);
+            }, 2000);
+          }, 2000);
+        }, 2000);
+      });
+    </script>
+    
+    <script src="app copy.js"></script> 
+</body>
+</html>

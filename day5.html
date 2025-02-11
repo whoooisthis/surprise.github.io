@@ -1,0 +1,151 @@
+<!-- ...existing code... -->
+<head>
+    <!-- ...existing code... -->
+    <style>
+        /* Styles from day 3 */
+        body {
+            background-color: #ffffff;
+            /* background-image: url('promise.png'); */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('promise.png');
+            background-size: 70%;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.1; /* Set opacity to 50% */
+            z-index: -1;
+        }
+        .headline {
+            font-size: 1.5em;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            color: #000000; /* Example color from day 3 */
+            margin-right: 10px; /* Add space between words */
+        }
+        .headline.promise {
+            color: brown; /* Change color of "Promise" to brown */
+        }
+        /* Additional styles from day 3 */
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .promise-text {
+            margin-top: 20px;
+            margin-left: 200px;
+            margin-right: 200px;
+            font-weight: lighter;
+            font-size: 1.3em;
+            color: #333333;
+            text-align: center;
+            padding: 0 40px;
+        }
+        .question {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333333;
+        }
+        .yes-button {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #ffffff;
+            background-color: #4CAF50;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    <!-- ...existing code... -->
+</head>
+<body>
+    <!-- ...existing code... -->
+    <div class="container">
+        <h1 id="headline-container"></h1>
+        <p id="promise-text" class="promise-text"></p>
+        <p id="question" class="question">Want a few more promises?</p>
+        <button id="yes-button" class="yes-button">Yes</button>
+    </div>
+    <!-- ...existing code... -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const words = ["Happy", "Promise", "Day"];
+            const promiseText = "I promise to stand by you, not just in the easy moments but through every twist and turn life brings our way. I may not be perfect, but I will always try—to understand you, to grow with you, and to make you smile even on the dullest days. I promise we will travel the world together, creating memories in places we've dreamt of. And with time, I will make sure to fulfill your wishes, one by one—especially those South Indian couple goals we keep laughing about. No matter where life takes us, my love and commitment to you will always remain constant.";
+            const container = document.getElementById("headline-container");
+            const promiseContainer = document.getElementById("promise-text");
+            const question = document.getElementById("question");
+            const yesButton = document.getElementById("yes-button");
+            let index = 0;
+
+            function showNextWord() {
+                if (index < words.length) {
+                    const wordElement = document.createElement("span");
+                    wordElement.className = "headline";
+                    if (words[index] === "Promise") {
+                        wordElement.classList.add("promise");
+                    }
+                    wordElement.textContent = words[index];
+                    container.appendChild(wordElement);
+
+                    setTimeout(() => {
+                        wordElement.style.opacity = 1;
+                    }, 100);
+
+                    index++;
+                    setTimeout(showNextWord, 1000);
+                } else {
+                    showPromiseText();
+                }
+            }
+
+            function showPromiseText() {
+                const promiseWords = promiseText.split(" ");
+                let promiseIndex = 0;
+
+                function showNextPromiseWord() {
+                    if (promiseIndex < promiseWords.length) {
+                        const wordElement = document.createElement("span");
+                        wordElement.textContent = promiseWords[promiseIndex] + " ";
+                        promiseContainer.appendChild(wordElement);
+
+                        setTimeout(() => {
+                            wordElement.style.opacity = 1;
+                        }, 100);
+
+                        promiseIndex++;
+                        setTimeout(showNextPromiseWord, 200);
+                    } else {
+                        setTimeout(() => {
+                            question.style.opacity = 1;
+                            yesButton.style.opacity = 1;
+                        }, 500);
+                    }
+                }
+
+                showNextPromiseWord();
+            }
+
+            yesButton.addEventListener("click", function() {
+                window.location.href = "day5continue.html";
+            });
+
+            showNextWord();
+        });
+    </script>
+    <!-- ...existing code... -->
+</body>
+<!-- ...existing code... -->

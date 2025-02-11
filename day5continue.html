@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Promise Day</title>
+    <link rel="stylesheet" href="css/valentine.css" />
+    <style>
+      body {
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        flex-direction: column;
+        color: black;
+      }
+      .responsive {
+        max-width: 100%;
+        height: auto;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(100vh);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .fade-in {
+        animation: fadeIn 2s ease-in-out;
+      }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      .fade-out {
+        animation: fadeOut 2s ease-in-out;
+      }
+      .center-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 1.5rem;
+        opacity: 0;
+      }
+      .content {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        display: none;
+      }
+      .brown {
+        color: brown;
+      }
+      .bold {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="pinkyGif" src="pinky.gif" alt="Pinky Promise"/>
+    <div id="introText1" class="center-text">Yessss Yesssss <span class="brown">Pinky</span> Promise</div>
+    <div id="introText2" class="center-text">I promise to always share the last bite of my <span class="brown">food</span> with you (even if it hurts my soul a little).</span>...</div>
+    <div id="introText3" class="center-text">I promise to take all your <span class="brown">dramatic</span> ‘I’m hungry’ and ‘I’m sleepy’ moments very seriously.</span></div>
+    <div id="introText4" class="center-text">I promise to listen to your <span class="brown">rants</span>—whether it’s about work, a TV show, or that one annoying person, and nod at the right moments.</span></div>
+    <div id="introText5" class="center-text">I promise to never watch our <span class="brown">favorite</span> series without you (even if the suspense kills me).</span></div>
+    <div id="introText6" class="center-text">I promise to be your personal <span class="brown">heater</span> in winters and your human fan in summers.</span></div>
+    <div id="introText7" class="center-text">I promise to take at least <span class="brown">50 pictures</span> of you before you say, ‘Okay, this one is good.’</span></div>
+    <div id="introText8" class="center-text">I promise to always be your biggest <span class="brown">cheerleader</span>, even if I don’t understand what you’re doing.</div>
+    <div id="introText9" class="center-text">I promise to always find a way to make you <span class="brown">smile</span>, even on your worst days.</div>
+    <div id="introText10" class="center-text">I promise to always be <span class="brown">honest</span> with you, even when it’s hard.</div>
+    <div id="introText11" class="center-text">I promise to <span class="brown">love</span> you more and more every day.</div>
+    <div id="loveGifContainer" class="center-text"><img id="loveGif" src="love.gif" alt="Love" class="responsive fade-in" /></div>
+
+    <script>
+      window.addEventListener('load', () => {
+        const pinkyGif = document.getElementById('pinkyGif');
+        const introText1 = document.getElementById('introText1');
+        const introText2 = document.getElementById('introText2');
+        const introText3 = document.getElementById('introText3');
+        const introText4 = document.getElementById('introText4');
+        const introText5 = document.getElementById('introText5');
+        const introText6 = document.getElementById('introText6');
+        const introText7 = document.getElementById('introText7');
+        const introText8 = document.getElementById('introText8');
+        const introText9 = document.getElementById('introText9');
+        const introText10 = document.getElementById('introText10');
+        const introText11 = document.getElementById('introText11');
+        const loveGifContainer = document.getElementById('loveGifContainer');
+
+        pinkyGif.style.opacity = 1;
+        setTimeout(() => {
+          pinkyGif.classList.add('fade-out');
+          setTimeout(() => {
+            pinkyGif.style.display = 'none';
+            introText1.style.opacity = 1;
+            setTimeout(() => {
+              introText1.classList.add('fade-out');
+              setTimeout(() => {
+                introText1.style.display = 'none';
+                introText2.style.opacity = 1;
+                setTimeout(() => {
+                  introText2.classList.add('fade-out');
+                  setTimeout(() => {
+                    introText2.style.display = 'none';
+                    introText3.style.opacity = 1;
+                    setTimeout(() => {
+                      introText3.classList.add('fade-out');
+                      setTimeout(() => {
+                        introText3.style.display = 'none';
+                        introText4.style.opacity = 1;
+                        setTimeout(() => {
+                          introText4.classList.add('fade-out');
+                          setTimeout(() => {
+                            introText4.style.display = 'none';
+                            introText5.style.opacity = 1;
+                            setTimeout(() => {
+                              introText5.classList.add('fade-out');
+                              setTimeout(() => {
+                                introText5.style.display = 'none';
+                                introText6.style.opacity = 1;
+                                setTimeout(() => {
+                                  introText6.classList.add('fade-out');
+                                  setTimeout(() => {
+                                    introText6.style.display = 'none';
+                                    introText7.style.opacity = 1;
+                                    setTimeout(() => {
+                                      introText7.classList.add('fade-out');
+                                      setTimeout(() => {
+                                        introText7.style.display = 'none';
+                                        introText8.style.opacity = 1;
+                                        setTimeout(() => {
+                                          introText8.classList.add('fade-out');
+                                          setTimeout(() => {
+                                            introText8.style.display = 'none';
+                                            introText9.style.opacity = 1;
+                                            setTimeout(() => {
+                                              introText9.classList.add('fade-out');
+                                              setTimeout(() => {
+                                                introText9.style.display = 'none';
+                                                introText10.style.opacity = 1;
+                                                setTimeout(() => {
+                                                  introText10.classList.add('fade-out');
+                                                  setTimeout(() => {
+                                                    introText10.style.display = 'none';
+                                                    introText11.style.opacity = 1;
+                                                    setTimeout(() => {
+                                                      introText11.classList.add('fade-out');
+                                                      setTimeout(() => {
+                                                        introText11.style.display = 'none';
+                                                        loveGifContainer.style.opacity = 1;
+                                                      }, 2000);
+                                                    }, 2000);
+                                                  }, 2000);
+                                                }, 2000);
+                                              }, 2000);
+                                            }, 2000);
+                                          }, 2000);
+                                        }, 2000);
+                                      }, 2000);
+                                    }, 2000);
+                                  }, 2000);
+                                }, 2000);
+                              }, 2000);
+                            }, 2000);
+                          }, 2000);
+                        }, 2000);
+                      }, 2000);
+                    }, 2000);
+                  }, 2000);
+                }, 2000);
+              }, 2000);
+            }, 2000);
+          }, 2000);
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

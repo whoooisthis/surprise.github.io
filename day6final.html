@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Teddy Day</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        background-color: white;
+        color: black;
+      }
+      .responsive {
+        max-width: 100%;
+        height: auto;
+      }
+      .headline {
+        font-size: 2rem;
+        opacity: 0;
+        text-align: center;
+        position: absolute;
+        top: 10%;
+      }
+      .paragraph {
+        font-size: 1.3rem;
+        opacity: 0;
+        left: 20%;
+        right: 20%;
+        padding: auto;
+        text-align: center;
+        max-width: 80%;
+        word-wrap: break-word;
+        position: absolute;
+        top: 24%;
+      }
+      .fade-in {
+        animation: fadeIn 2s ease-in-out forwards;
+      }
+      .fade-in-word {
+        display: inline-block;
+        opacity: 0;
+        margin-right: 0.2rem;
+      }
+      .brown {
+        color: brown;
+      }
+      .bottom-center {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div id="headline" class="headline">Happy <span class="brown">Hug</span> 🫂 Day</div>
+    <div id="paragraph" class="paragraph"></div>
+    <img id="hugGif" src="hug.gif" alt="Hug" class="responsive bottom-center" />
+
+    <script>
+      window.addEventListener('load', () => {
+        const headline = document.getElementById('headline');
+        const paragraph = document.getElementById('paragraph');
+        const hugGif = document.getElementById('hugGif');
+        const text = "Our hugs have become more than just embraces—they hold our emotions, our love, and our unspoken words. From those tight, emotional airport and railway station goodbyes to the overwhelming joy of arrival hugs, every hug with you is special and irreplaceable. I promise that no matter how far we are, my heart will always hold you close. And every time I see you, I will wrap you in the warmest hug—one that says ‘I missed you,’ ‘I love you,’ and ‘You are my home.’ So here’s a big, tight, and never-letting-go kinda hug for you today! Love you endlessly.";
+        
+        headline.classList.add('fade-in');
+        
+        const words = text.split(' ');
+        words.forEach((word, index) => {
+          const span = document.createElement('span');
+          span.textContent = word;
+          span.classList.add('fade-in-word');
+          span.style.animationDelay = `${index * 0.2}s`;
+          if (word.toLowerCase() === 'hug' || word.toLowerCase() === 'hugs') {
+            span.classList.add('brown');
+          }
+          paragraph.appendChild(span);
+        });
+        
+        setTimeout(() => {
+          paragraph.style.opacity = 1;
+          const spans = paragraph.querySelectorAll('.fade-in-word');
+          spans.forEach(span => {
+            span.classList.add('fade-in');
+          });
+          spans[spans.length - 1].addEventListener('animationend', () => {
+            hugGif.style.display = 'block';
+            hugGif.classList.add('fade-in');
+          });
+        }, 2000);
+      });
+    </script>
+</body>
+</html>

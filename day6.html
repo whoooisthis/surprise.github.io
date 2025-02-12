@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Day 6</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        background-color: white;
+        color: black;
+      }
+      .responsive {
+        max-width: 100%;
+        height: auto;
+      }
+      .loader {
+        width: 100%;
+        max-width: 600px;
+        height: 20px;
+        background-color: #f3f3f3;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 20px;
+      }
+      .loader-bar {
+        height: 100%;
+        width: 0;
+        background-color: rgba(165, 42, 42, 0.387);
+        border-radius: 10px;
+        animation: load 5s linear forwards;
+      }
+      @keyframes load {
+        to {
+          width: 100%;
+        }
+      }
+      .center-left {
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        width: 30%;
+      }
+      .center-right {
+        position: absolute;
+        top: 50%;
+        right: 35%;
+        transform: translate(50%, -50%);
+        opacity: 0;
+        text-align: center;
+        font-size: 1.5rem;
+        max-width: 30%;
+        word-wrap: break-word;
+      }
+      .center {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        width: 30%;
+      }
+      .bottom-center {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-align: center;
+        font-size: 1.5rem;
+        opacity: 0;
+        max-width: 80%;
+        word-wrap: break-word;
+      }
+      .fade-in {
+        animation: fadeIn 3s ease-in-out forwards;
+      }
+      .fade-out {
+        animation: fadeOut 2s ease-in-out forwards;
+      }
+      .brown {
+        color: brown;
+      }
+      .button {
+        display: none;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        color: white;
+        background-color: brown;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+      }
+      .popup {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border: 2px solid brown;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+    </style>
+</head>
+<body>
+    <img src="wait.gif" alt="Please Wait" class="responsive" />
+    <div class="loader">
+        <div class="loader-bar"></div>
+    </div>
+    <img id="hugImage" src="hug1.png" alt="Hug" class="responsive center-left" style="display: none;" />
+    <div id="hugText" class="center-right" style="display: none;">Do you know where we experience one of the <span class="brown">best hug</span>, which you can truly feel? Let’s find out!</div>
+    <img id="newHugImage" src="hug1.jpg" alt="New Hug" class="responsive center" style="display: none;" />
+    <div id="newHugText" class="bottom-center" style="display: none;">It was at <span class="brown">Kolukkumalai</span>, during the early morning sunrise on your <span class="brown">birthday</span>. That hug felt so good and overwhelmingly beautiful!</div>
+    <button id="virtualHugButton" class="button fade-in">Virtual Hug</button>
+    <div id="popup" class="popup">Do more clicks!</div>
+
+    <script>
+      window.addEventListener('load', () => {
+        const loaderBar = document.querySelector('.loader-bar');
+        loaderBar.addEventListener('animationend', () => {
+          document.querySelector('img[alt="Please Wait"]').style.display = 'none';
+          document.querySelector('.loader').style.display = 'none';
+          const hugImage = document.getElementById('hugImage');
+          const hugText = document.getElementById('hugText');
+          hugImage.style.display = 'block';
+          hugText.style.display = 'block';
+          hugImage.classList.add('fade-in');
+          hugText.classList.add('fade-in');
+          hugText.addEventListener('animationend', () => {
+            setTimeout(() => {
+              hugImage.classList.add('fade-out');
+              hugText.classList.add('fade-out');
+              hugImage.addEventListener('animationend', () => {
+                hugImage.style.display = 'none';
+                hugText.style.display = 'none';
+                const newHugImage = document.getElementById('newHugImage');
+                const newHugText = document.getElementById('newHugText');
+                newHugImage.style.display = 'block';
+                newHugImage.classList.add('fade-in');
+                newHugImage.addEventListener('animationend', () => {
+                  newHugText.style.display = 'block';
+                  newHugText.classList.add('fade-in');
+                  newHugText.addEventListener('animationend', () => {
+                    const virtualHugButton = document.getElementById('virtualHugButton');
+                    virtualHugButton.style.display = 'block';
+                    virtualHugButton.classList.add('fade-in');
+                  });
+                });
+              });
+            }, 2000);
+          });
+        });
+
+        let clickCount = 0;
+        const virtualHugButton = document.getElementById('virtualHugButton');
+        const popup = document.getElementById('popup');
+
+        virtualHugButton.addEventListener('click', () => {
+          clickCount++;
+          if (clickCount === 2) {
+            popup.style.display = 'block';
+            setTimeout(() => {
+              popup.style.display = 'none';
+            }, 2000);
+          } else if (clickCount === 5) {
+            window.location.href = 'day6continue.html';
+          }
+        });
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7.1</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: white;
+        color: black;
+        margin: 0;
+        flex-direction: column;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        height: 100%;
+      }
+      .grid-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ccc;
+        position: relative;
+      }
+      .center {
+        max-width: 100%;
+        height: 90%;
+      }
+      .question-box {
+        display: none;
+        text-align: center;
+        padding: 20px;
+        border: 2px solid brown;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .button {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        color: white;
+        background-color: brown;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div id="section1" class="grid-item"><img src="kiss1.gif" alt="Kiss 1" class="center" /></div>
+        <div id="section2" class="grid-item"><img src="kiss2.gif" alt="Kiss 2" class="center" /></div>
+        <div id="section3" class="grid-item"><img src="kiss3.gif" alt="Kiss 3" class="center" /></div>
+        <div id="section4" class="grid-item"><img src="kiss4.gif" alt="Kiss 4" class="center" /></div>
+        <div id="section5" class="grid-item"><img src="kiss5.gif" alt="Kiss 5" class="center" /></div>
+        <div id="section6" class="grid-item"><img src="kiss6.gif" alt="Kiss 6" class="center" /></div>
+    </div>
+    <div id="questionBox" class="question-box">
+        <p>Want to kiss me?</p>
+        <button id="yesButton" class="button">YES</button>
+    </div>
+
+    <script>
+      window.addEventListener('scroll', () => {
+        const questionBox = document.getElementById('questionBox');
+        questionBox.style.display = 'block';
+      });
+
+      const yesButton = document.getElementById('yesButton');
+      yesButton.addEventListener('click', () => {
+        window.location.href = 'day7.2.html';
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiss Loading</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: white;
+        color: black;
+        margin: 0;
+        flex-direction: column;
+      }
+      .responsive {
+        max-width: 100%;
+        height: auto;
+      }
+      .loader {
+        width: 100%;
+        max-width: 600px;
+        height: 20px;
+        background-color: #f3f3f3;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 20px;
+      }
+      .loader-bar {
+        height: 100%;
+        width: 0;
+        background-color: brown;
+        border-radius: 10px;
+        animation: load 5s linear forwards;
+      }
+      @keyframes load {
+        to {
+          width: 100%;
+        }
+      }
+      .center {
+        display: none;
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+</head>
+<body>
+    <div>Kiss Loading</div>
+    <div class="loader">
+        <div class="loader-bar"></div>
+    </div>
+    <img id="mainKiss" src="mainkiss.gif" alt="Main Kiss" class="responsive center" />
+
+    <script>
+      window.addEventListener('load', () => {
+        const loaderBar = document.querySelector('.loader-bar');
+        const mainKiss = document.getElementById('mainKiss');
+        loaderBar.addEventListener('animationend', () => {
+          mainKiss.style.display = 'block';
+          setTimeout(() => {
+            window.location.href = 'day7.3.html';
+          }, 10000);
+        });
+      });
+    </script>
+</body>
+</html>

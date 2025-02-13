@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Kiss Day</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        background-color: white;
+        color: black;
+      }
+      .responsive {
+        max-width: 100%;
+        height: auto;
+      }
+      .headline {
+        font-size: 2rem;
+        opacity: 0;
+        text-align: center;
+        position: absolute;
+        top: 10%;
+      }
+      .paragraph {
+        font-size: 1.3rem;
+        opacity: 0;
+        left: 20%;
+        right: 20%;
+        padding: auto;
+        text-align: center;
+        max-width: 80%;
+        word-wrap: break-word;
+        position: absolute;
+        top: 24%;
+      }
+      .fade-in {
+        animation: fadeIn 2s ease-in-out forwards;
+      }
+      .fade-in-word {
+        display: inline-block;
+        opacity: 0;
+        margin-right: 0.2rem;
+      }
+      .brown {
+        color: brown;
+      }
+      .bottom-center {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+</head>
+<body>
+    <div id="headline" class="headline">Happy <span class="brown">Kiss</span> 😘 Day</div>
+    <div id="paragraph" class="paragraph"></div>
+    <img id="hugGif" src="cartoonkiss.gif" alt="Hug" class="responsive bottom-center" style="width: 27%;" />
+
+    <script>
+      window.addEventListener('load', () => {
+        const headline = document.getElementById('headline');
+        const paragraph = document.getElementById('paragraph');
+        const hugGif = document.getElementById('hugGif');
+        const text = "I was sleeping so peacefully, completely unaware… and yes, looking cute (as you say 😋). And then, you kissed me—softly, sweetly. Later, when you told me about it, my heart just melted. Moments like these make me fall for you even more. Your kisses are my favorite, and I can’t wait for a million more! Happy Kiss Day, my love! Sending you all my love and endless kisses! ";
+        
+        headline.classList.add('fade-in');
+        
+        const words = text.split(' ');
+        words.forEach((word, index) => {
+          const span = document.createElement('span');
+          span.textContent = word;
+          span.classList.add('fade-in-word');
+          span.style.animationDelay = `${index * 0.2}s`;
+          if (word.toLowerCase() === 'kiss' || word.toLowerCase() === 'kisses') {
+            span.classList.add('brown');
+          }
+          paragraph.appendChild(span);
+        });
+        
+        setTimeout(() => {
+          paragraph.style.opacity = 1;
+          const spans = paragraph.querySelectorAll('.fade-in-word');
+          spans.forEach(span => {
+            span.classList.add('fade-in');
+          });
+          spans[spans.length - 1].addEventListener('animationend', () => {
+            hugGif.style.display = 'block';
+            hugGif.classList.add('fade-in');
+          });
+        }, 2000);
+      });
+    </script>
+</body>
+</html>
